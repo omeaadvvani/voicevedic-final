@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS for VoiceVedic aesthetic formatting */
+.voicevedic-compact {
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.voicevedic-bullet {
+  margin-bottom: 0.25rem;
+  padding-left: 0.5rem;
+}
+
+.voicevedic-heading {
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.voicevedic-footer {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-style: italic;
+}
