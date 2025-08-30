@@ -1,6 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Enhanced Language Support System - Phase 2 Implementation */
+
+/* Hindi Text Support - Enhanced Devangari Rendering */
+.hindi-text {
+  font-family: 'Noto Serif Devanagari', 'Tiro Devanagari', serif;
+  font-feature-settings: "liga" 1, "kern" 1, "rlig" 1;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  text-rendering: optimizeLegibility;
+}
+
+/* Tamil Text Support */
+.tamil-text {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-feature-settings: "liga" 1, "kern" 1;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* Telugu Text Support */
+.telugu-text {
+  font-family: 'Noto Sans Telugu', sans-serif;
+  font-feature-settings: "liga" 1, "kern" 1;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* Malayalam Text Support */
+.malayalam-text {
+  font-family: 'Noto Sans Malayalam', sans-serif;
+  font-feature-settings: "liga" 1, "kern" 1;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* Kannada Text Support */
+.kannada-text {
+  font-family: 'Noto Sans Kannada', sans-serif;
+  font-feature-settings: "liga" 1, "kern" 1;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* Enhanced Text Wrapping System */
+.break-words {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  max-width: 100%;
+}
+
+/* Mobile Responsive Text System */
+.mobile-text {
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.tablet-text {
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+.desktop-text {
+  font-size: 16px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+/* Language-Specific Text Containers */
+.text-container-hindi {
+  @apply hindi-text break-words;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.text-container-south-indian {
+  @apply break-words;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* Performance Optimized Text Rendering */
+.optimized-text {
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
 
 /* Custom CSS for VoiceVedic aesthetic formatting */
 .voicevedic-compact {
@@ -26,4 +127,32 @@
   font-size: 0.875rem;
   color: #6b7280;
   font-style: italic;
+}
+
+/* Responsive Design System */
+@media (max-width: 768px) {
+  .mobile-text {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .text-container-hindi,
+  .text-container-south-indian {
+    padding: 10px;
+    margin: 8px 0;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .tablet-text {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+@media (min-width: 1025px) {
+  .desktop-text {
+    font-size: 16px;
+    line-height: 1.7;
+  }
 }

@@ -6,7 +6,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 export const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Version, X-Request-Id, x-request-id, x-client-version",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Version, X-Request-Id, x-request-id, x-client-version, x-client-info, apikey",
 };
 
 // Standard API response interface

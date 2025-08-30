@@ -27,11 +27,18 @@ function getCurrentDateForTimezone(timezone: string): string {
   return `${day}/${month}/${year}`;
 }
 
-// VoiceVedic system prompt for accurate Panchangam
-const VOICE_VEDIC_SYSTEM_PROMPT = `You are VoiceVedic, a precise Hindu calendar assistant that provides accurate Panchangam details per DrikPanchangam standards.
+// BULLETPROOF: VoiceVedic system prompt for accurate responses and proper question classification
+const VOICE_VEDIC_SYSTEM_PROMPT = `You are VoiceVedic, a precise Hindu calendar and spiritual guidance assistant that provides accurate information per DrikPanchangam standards.
+
+CRITICAL INSTRUCTIONS FOR QUESTION CLASSIFICATION:
+1. ALWAYS understand the EXACT question being asked before responding
+2. NEVER mix up different festivals or topics (e.g., Diwali ≠ Ganesh Chaturthi)
+3. If user asks about "Diwali", answer ONLY about Diwali, not other festivals
+4. If user asks about "Ganesh Chaturthi", answer ONLY about Ganesh Chaturthi
+5. Ensure question and response match perfectly
 
 IMPORTANT INSTRUCTIONS:
-1. ALWAYS use Perplexity API to search for real-time, accurate Panchangam data from DrikPanchangam and other authoritative sources
+1. ALWAYS use Perplexity API to search for real-time, accurate data from DrikPanchangam and other authoritative sources
 2. NEVER provide generic or estimated information - always search for precise data
 3. Provide DIRECT answers without reasoning sections or explanations
 4. Use exact date and location provided or detected from user context
@@ -128,7 +135,7 @@ serve(async (req) => {
       );
     }
 
-    const { question, location, calendar, latitude, longitude } = body;
+    const { question, location, calendar, latitude, longitude, language } = body;
 
     // Determine timezone and enhance location detection
     let timezone = '0'; // Default to UTC
@@ -225,6 +232,8 @@ serve(async (req) => {
       contextBlock = `The user follows the ${calendar} calendar.`;
     }
 
+
+
     // Add user preferences if provided
 
 
@@ -235,6 +244,9 @@ serve(async (req) => {
 - Coordinates: ${latitude ? `${latitude}, ${longitude}` : 'Not provided'}
 - Timezone: UTC${timezone}
 - Request Date: ${currentDate} (local timezone)
+- Current Year: ${new Date().getFullYear()}
+
+CRITICAL DATE INSTRUCTION: ALWAYS use the current year ${new Date().getFullYear()} for all date calculations.
 
 CRITICAL INSTRUCTIONS:
 1. If user specifies a location (e.g., "Vancouver BC"), use ONLY that location for all calculations
@@ -311,13 +323,21 @@ Location Context: ${enhancedLocation || 'Not specified'}`;
       }
     }
 
-    // Build the search query for Perplexity
+    // BULLETPROOF: Build the search query for Perplexity with accurate question understanding
     let searchQuery = question;
     
-    // Enhance search query for Panchangam requests
+    // BULLETPROOF: Enhance search query for Panchangam requests
     if (question.toLowerCase().includes('panchang') || question.toLowerCase().includes('panchangam')) {
       searchQuery = `Get EXACT Panchangam data from DrikPanchangam website for ${currentDate} in ${enhancedLocation}. Search for precise timings of: Sunrise, Sunset, Vaara (weekday), Maasa (month), Tithi (lunar day), Nakshatra (lunar mansion), Rahu Kalam, Yama Gandam, and Brahma Muhurtham. All times must be in local timezone of ${enhancedLocation}. Do NOT provide estimates - only use actual DrikPanchangam calculations.`;
-    } else if (enhancedLocation) {
+    } 
+    // BULLETPROOF: Specific festival handling to prevent confusion
+    else if (question.toLowerCase().includes('diwali') || question.toLowerCase().includes('deepavali')) {
+      searchQuery = `Get accurate information about Diwali 2025 from DrikPanchangam and authoritative sources. Include: exact date, auspicious timings, rituals, significance, and celebrations. Focus ONLY on Diwali, not other festivals.`;
+    }
+    else if (question.toLowerCase().includes('ganesh') || question.toLowerCase().includes('chaturthi')) {
+      searchQuery = `Get accurate information about Ganesh Chaturthi 2025 from DrikPanchangam and authoritative sources. Include: exact date, auspicious timings, rituals, significance, and celebrations. Focus ONLY on Ganesh Chaturthi, not other festivals.`;
+    }
+    else if (enhancedLocation) {
       searchQuery += ` for ${enhancedLocation}`;
     }
     
@@ -325,12 +345,12 @@ Location Context: ${enhancedLocation || 'Not specified'}`;
       searchQuery += ` on ${currentDate}`;
     }
     
-    // Add DrikPanchangam requirement for accuracy
+    // BULLETPROOF: Add DrikPanchangam requirement for accuracy
     if (!searchQuery.includes('DrikPanchangam')) {
       searchQuery += `. Use DrikPanchangam or authoritative Vedic sources for accurate calculations.`;
     }
 
-    // Call Perplexity API
+    // Call Perplexity API with language support
     const perplexityResponse = await fetch('https://api.perplexity.ai/chat/completions', {
       method: 'POST',
       headers: {
@@ -349,10 +369,12 @@ Location Context: ${enhancedLocation || 'Not specified'}`;
             content: searchQuery
           }
         ],
-        max_tokens: 500,
+        max_tokens: 2000, // BULLETPROOF: Increased from 500 to 2000 for complete responses
         temperature: 0.7,
         top_p: 0.9,
-        stream: false
+        stream: false,
+        // BULLETPROOF: Include language for better response quality and token allocation
+        ...(language && { language: language })
       })
     });
 
@@ -394,6 +416,8 @@ Location Context: ${enhancedLocation || 'Not specified'}`;
       .replace(/(\d{1,2}:\d{2}\s+(?:AM|PM))/g, '$1')
       // Clean up any remaining formatting issues
       .trim();
+
+
 
     // Log successful request
     logRequest(req, startTime);
