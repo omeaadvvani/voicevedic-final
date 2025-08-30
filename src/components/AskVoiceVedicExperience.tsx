@@ -2107,7 +2107,24 @@ const AskVoiceVedicExperience: React.FC<AskVoiceVedicExperienceProps> = ({
         'birth chart', 'kundli', 'astrology', 'zodiac', 'aries', 'taurus', 'gemini',
         'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagittarius', 'capricorn',
         'aquarius', 'pisces', 'mesha', 'vrishabha', 'mithuna', 'karka', 'simha',
-        'kanya', 'tula', 'vrishchika', 'dhanu', 'makara', 'kumbha', 'meena'
+        'kanya', 'tula', 'vrishchika', 'dhanu', 'makara', 'kumbha', 'meena',
+        // EXPERT TEAM ADDITION: Missing spiritual keywords for proper classification
+        'radha', 'ashtami', 'radhaashtami', 'radha ashtami', 'satyanarayan', 'katha',
+        'mahadev', 'shiva', 'shiv', 'adiyogi', 'yogi', 'hanuman', 'chalisa',
+        'ram', 'krishna', 'vishnu', 'brahma', 'durga', 'lakshmi', 'saraswati',
+        'kali', 'parvati', 'sita', 'rama', 'laxman', 'bharat', 'shatrughna',
+        'ravana', 'kumbhakarna', 'vibhishana', 'sugriva', 'angada', 'jambavan',
+        'narasimha', 'varaha', 'kurma', 'matsya', 'kalki', 'buddha', 'vamana',
+        'bhagavad gita', 'gita', 'upanishad', 'vedanta', 'sankhya', 'nyaya',
+        'vaisheshika', 'mimamsa', 'yoga sutra', 'patanjali', 'kapila', 'vyasa',
+        'valmiki', 'tulsidas', 'kabir', 'meera', 'surdas', 'chaitanya', 'ramakrishna',
+        'swami vivekananda', 'sai baba', 'ramana maharshi', 'nityananda', 'guru nanak',
+        'gurudwara', 'ashram', 'math', 'peeth', 'dham', 'tirth', 'kashi', 'varanasi',
+        'ayodhya', 'mathura', 'vrindavan', 'dwarka', 'badrinath', 'kedarnath',
+        'jagannath', 'purushottam', 'balaji', 'venkateswara', 'tirupati', 'sabari',
+        'shabari', 'sabari malai', 'sabarimala', 'vaishno devi', 'vaishnodevi',
+        'amarnath', 'kedarnath', 'badrinath', 'gangotri', 'yamunotri', 'somnath',
+        'somnath temple', 'golden temple', 'harmandir sahib', 'akshardham', 'akshardham temple'
       ],
       
       // Hindi Keywords (हिंदी)
@@ -2119,8 +2136,23 @@ const AskVoiceVedicExperience: React.FC<AskVoiceVedicExperienceProps> = ({
         'व्रत', 'एकादशी', 'पूर्णिमा', 'अमावस्या', 'संक्रांति', 'सूर्योदय', 'सूर्यास्त',
         'राहु', 'केतु', 'गुरु', 'शनि', 'मंगल', 'शुभ', 'अशुभ', 'मंगल', 'अमंगल',
         'हिंदू', 'वैदिक', 'आध्यात्मिक', 'धार्मिक', 'मंदिर', 'देवता', 'देवी',
-        'भगवान', 'स्वामी', 'राशिफल', 'कुंडली', 'ज्योतिष', 'राशि', 'मेष', 'वृषभ',
-        'मिथुन', 'कर्क', 'सिंह', 'कन्या', 'तुला', 'वृश्चिक', 'धनु', 'मकर', 'कुंभ', 'मीन'
+        'भगवान', 'स्वामी',         'राशिफल', 'कुंडली', 'ज्योतिष', 'राशि', 'मेष', 'वृषभ',
+        'मिथुन', 'कर्क', 'सिंह', 'कन्या', 'तुला', 'वृश्चिक', 'धनु', 'मकर', 'कुंभ', 'मीन',
+        // EXPERT TEAM ADDITION: Missing Hindi spiritual keywords
+        'राधा', 'अष्टमी', 'राधाष्टमी', 'सत्यनारायण', 'कथा', 'महादेव', 'शिव',
+        'आदियोगी', 'योगी', 'हनुमान', 'चालीसा', 'राम', 'कृष्ण', 'विष्णु', 'ब्रह्मा',
+        'दुर्गा', 'लक्ष्मी', 'सरस्वती', 'काली', 'पार्वती', 'सीता', 'रामा', 'लक्ष्मण',
+        'भरत', 'शत्रुघ्न', 'रावण', 'कुंभकर्ण', 'विभीषण', 'सुग्रीव', 'अंगद', 'जाम्बवान',
+        'नरसिंह', 'वराह', 'कूर्म', 'मत्स्य', 'कल्कि', 'बुद्ध', 'वामन', 'भगवद गीता',
+        'गीता', 'उपनिषद', 'वेदांत', 'सांख्य', 'न्याय', 'वैशेषिक', 'मीमांसा',
+        'योग सूत्र', 'पतंजलि', 'कपिल', 'व्यास', 'वाल्मीकि', 'तुलसीदास', 'कबीर',
+        'मीरा', 'सूरदास', 'चैतन्य', 'रामकृष्ण', 'स्वामी विवेकानंद', 'साई बाबा',
+        'रमण महर्षि', 'नित्यानंद', 'गुरु नानक', 'गुरुद्वारा', 'आश्रम', 'मठ', 'पीठ',
+        'धाम', 'तीर्थ', 'काशी', 'वाराणसी', 'अयोध्या', 'मथुरा', 'वृंदावन', 'द्वारका',
+        'बद्रीनाथ', 'केदारनाथ', 'जगन्नाथ', 'पुरुषोत्तम', 'बालाजी', 'वेंकटेश्वर',
+        'तिरुपति', 'शबरी', 'शबरी मलाई', 'सबरीमला', 'वैष्णो देवी', 'अमरनाथ',
+        'गंगोत्री', 'यमुनोत्री', 'सोमनाथ', 'सोमनाथ मंदिर', 'स्वर्ण मंदिर',
+        'हरमंदिर साहिब', 'अक्षरधाम', 'अक्षरधाम मंदिर'
       ],
       
       // Kannada Keywords (ಕನ್ನಡ)
